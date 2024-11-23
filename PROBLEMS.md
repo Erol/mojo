@@ -26,3 +26,4 @@
 1. No tests
 2. Manager.all.sample should be moved to the model logic
 3. Unused methods on TransactionsController
+4. Managing the list of available currencies needs a deploy because it's on a hard-coded array. It might be better persisted to a database table
