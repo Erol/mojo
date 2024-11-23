@@ -6,6 +6,7 @@
 2. Unsanitized mass-assignment of parameters for Transaction.create. The parameters need to be whitelisted
 3. Manager.all.sample is a potential performance bottleneck and requests can be spammed for a potential DoS
 #### Performance issues
+4. Rendering views from an unsanitized type. The type needs to be checked from a whitelist before rendering
 
 1. Manager.all.sample loads all records and is a potential performance bottleneck
 2. ...

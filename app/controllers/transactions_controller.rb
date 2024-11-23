@@ -37,7 +37,12 @@ class TransactionsController < ApplicationController
 
   def render_new
     @manager = Manager.sample if params[:type] == "extra"
-    render "new_#{params[:type]}"
+
+    if %w[small large extra].include?(params[:type])
+      render "new_#{params[:type]}"
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def transaction_params

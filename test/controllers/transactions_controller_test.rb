@@ -24,4 +24,28 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to transaction_path(transaction)
   end
+
+  test "should render new small transaction type" do
+    get new_transaction_path(type: "small")
+
+    assert_template :new_small
+  end
+
+  test "should render new large transaction type" do
+    get new_transaction_path(type: "large")
+
+    assert_template :new_large
+  end
+
+  test "should render new extra large transaction type" do
+    get new_transaction_path(type: "extra")
+
+    assert_template :new_extra
+  end
+
+  test "should return 404 for unrecognized transaction type" do
+    assert_raise(ActionController::RoutingError) do
+      get new_transaction_path(type: "unrecognized")
+    end
+  end
 end
