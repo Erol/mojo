@@ -39,7 +39,7 @@ class Transaction < ApplicationRecord
   end
 
   def generate_uid
-    self.uid = SecureRandom.hex(5)
+    self.uid = SecureRandom.hex(10) # Should be enough if we are not looking to have more than 1 zillion transactions
   end
 
   def convert

@@ -50,4 +50,11 @@ class TransactionTest < ActiveSupport::TestCase
     transaction.manager = Manager.first
     assert transaction.save
   end
+
+  test "UID has a unique constraint" do
+    transaction_1 = Transaction.create(from_currency: "USD", from_amount_cents: 99_99, to_currency: "GBP")
+    transaction_2 = Transaction.create(from_currency: "USD", from_amount_cents: 99_99, to_currency: "GBP")
+
+    assert_raise(ActiveRecord::RecordNotUnique) { transaction_2.update!(uid: transaction_1.uid) }
+  end
 end
