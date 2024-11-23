@@ -10,9 +10,8 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @manager = Manager.all.sample
 
-    render "new_#{params[:type]}"
+    render_new
   end
 
   def new_large
@@ -21,22 +20,25 @@ class TransactionsController < ApplicationController
 
   def new_extra_large
     @transaction = Transaction.new
-    @manager = Manager.all.sample
+    @manager = Manager.sample
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
 
-    @manager = Manager.all.sample if params[:type] == 'extra'
-
     if @transaction.save
       redirect_to @transaction
     else
-      render "new_#{params[:type]}"
+      render_new
     end
   end
 
   private
+
+  def render_new
+    @manager = Manager.sample if params[:type] == "extra"
+    render "new_#{params[:type]}"
+  end
 
   def transaction_params
     case params[:type]

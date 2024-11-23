@@ -1,7 +1,8 @@
 require "test_helper"
 
 class ManagerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "sample returns a random record" do
+    manager = Manager.sample
+    assert manager.present?
+  end
 end

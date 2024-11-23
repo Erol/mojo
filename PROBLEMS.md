@@ -4,10 +4,10 @@
 
 1. SecureRandom.hex(5) is not enough to guarantee uniqueness since it has an upper bounds of 1,048,576. We should increase the number of characters and possibly use a different encoding, like Crockford Base-32. We should also introduce a unique constraint on the DB in case of collissions
 2. Unsanitized mass-assignment of parameters for Transaction.create. The parameters need to be whitelisted
-3. ...
+3. Manager.all.sample is a potential performance bottleneck and requests can be spammed for a potential DoS
 #### Performance issues
 
-1. ...
+1. Manager.all.sample loads all records and is a potential performance bottleneck
 2. ...
 3. ...
 #### Code issues
@@ -18,5 +18,5 @@
 #### Others
 
 1. No tests
-2. ...
+2. Manager.all.sample should be moved to the model logic
 3. ...

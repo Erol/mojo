@@ -18,7 +18,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create extra large transaction" do
-    post transactions_url, params: { type: "extra", transaction: { from_currency: "USD", from_amount: "1000.01", to_currency: "GBP", first_name: "John", last_name: "Doe", manager_id: Manager.first.id } }
+    post transactions_url, params: { type: "extra", transaction: { from_currency: "USD", from_amount: "1000.01", to_currency: "GBP", first_name: "John", last_name: "Doe", manager_id: Manager.sample.id } }
 
     transaction = Transaction.last
 
