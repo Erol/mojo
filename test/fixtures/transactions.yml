@@ -3,15 +3,17 @@
 one:
   first_name: MyString
   last_name: MyString
-  amount: 1
   from_currency: MyString
+  from_amount_cents: 100_00
   to_currency: MyString
+  to_amount_cents: 200_00
   manager: one
 
 two:
   first_name: MyString
   last_name: MyString
-  amount: 1
   from_currency: MyString
+  from_amount_cents: 100_00
   to_currency: MyString
+  to_amount_cents: 200_00
   manager: two

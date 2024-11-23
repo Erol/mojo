@@ -6,8 +6,8 @@ class Transaction < ApplicationRecord
   monetize :from_amount_cents, with_currency: ->(t) { t.from_currency }, numericality: { greater_than: 0 }
   monetize :to_amount_cents, with_currency: ->(t) { t.to_currency }
 
-  validates :first_name, presence: true, if: :large?
-  validates :last_name, presence: true, if: :large?
+  validates :first_name, presence: true, if: :require_client_information?
+  validates :last_name, presence: true, if: :require_client_information?
   validates :from_currency, inclusion: AVAILABLE_CURRENCIES
   validates :to_currency, inclusion: AVAILABLE_CURRENCIES
   validate :currencies_validation
@@ -21,7 +21,7 @@ class Transaction < ApplicationRecord
   end
 
   def large?
-    from_amount_in_usd > Money.from_amount(100)
+    from_amount_in_usd.between?(Money.from_amount(100), Money.from_amount(1_000))
   end
 
   def extra_large?
@@ -33,6 +33,10 @@ class Transaction < ApplicationRecord
   end
 
   private
+
+  def require_client_information?
+    large? || extra_large?
+  end
 
   def generate_uid
     self.uid = SecureRandom.hex(5)
