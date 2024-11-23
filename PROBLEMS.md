@@ -20,4 +20,4 @@
 
 1. No tests
 2. Manager.all.sample should be moved to the model logic
-3. ...
+3. Unused methods on TransactionsController

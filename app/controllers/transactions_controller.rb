@@ -14,15 +14,6 @@ class TransactionsController < ApplicationController
     render_new
   end
 
-  def new_large
-    @transaction = Transaction.new
-  end
-
-  def new_extra_large
-    @transaction = Transaction.new
-    @manager = Manager.sample
-  end
-
   def create
     @transaction = Transaction.new(transaction_params)
 
