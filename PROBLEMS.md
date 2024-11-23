@@ -12,7 +12,8 @@
 
 1. Manager.all.sample loads all records and is a potential performance bottleneck
 2. Transaction.all loads all records. Best to have the view paginated
-3. ...
+3. Currency conversion - which might be relatively expensive - is happening before validation. It might be more efficient to validate first before we do the conversion
+4. RubyMoney updating rates on Puma process start. The rates should be cached and updating should be moved to an asynchronous job that runs on a preset schedule
 
 #### Code issues
 
