@@ -3,7 +3,7 @@
 #### Security issues
 
 1. SecureRandom.hex(5) is not enough to guarantee uniqueness since it has an upper bounds of 1,048,576. We should increase the number of characters and possibly use a different encoding, like Crockford Base-32. We should also introduce a unique constraint on the DB in case of collissions
-2. ...
+2. Unsanitized mass-assignment of parameters for Transaction.create. The parameters need to be whitelisted
 3. ...
 #### Performance issues
 
