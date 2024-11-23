@@ -30,15 +30,15 @@ class TransactionsController < ApplicationController
   def render_new
     @manager = Manager.sample if params[:type] == "extra"
 
-    if %w[small large extra].include?(params[:type])
-      render "new_#{params[:type]}"
+    if %w[small large extra].include?(transaction_type)
+      render "new_#{transaction_type}"
     else
       raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def transaction_params
-    case params[:type]
+    case transaction_type
     when "small"
       params.require(:transaction).permit(:from_currency, :from_amount, :to_currency)
     when "large"
@@ -46,5 +46,9 @@ class TransactionsController < ApplicationController
     when "extra"
       params.require(:transaction).permit(:from_currency, :from_amount, :to_currency, :first_name, :last_name, :manager_id)
     end
+  end
+
+  def transaction_type
+    params[:type]
   end
 end
