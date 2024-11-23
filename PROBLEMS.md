@@ -10,7 +10,7 @@
 #### Performance issues
 
 1. Manager.all.sample loads all records and is a potential performance bottleneck
-2. ...
+2. Transaction.all loads all records. Best to have the view paginated
 3. ...
 
 #### Code issues

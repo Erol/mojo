@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
+  include Pagy::Backend
 
   def index
-    @transactions = Transaction.all
+    @pagy, @transactions = pagy(Transaction)
   end
 
   def show
